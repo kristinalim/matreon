@@ -42,6 +42,7 @@ gem 'exception_notification'
 gem 'exception_notification-rake', '~> 0.3.0'
 
 gem 'bigdecimal'
+gem 'ransack', '~> 1.8'
 
 group :development, :test do
   # Use sqlite3 as the database for Active Record
