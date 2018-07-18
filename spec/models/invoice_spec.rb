@@ -18,6 +18,20 @@ RSpec.describe Contribution, :type => :model do
     end
   end
 
+  describe "named scope" do
+    describe "unpaid" do
+      it "includes records with unpaid status" do
+        result = described_class.unpaid
+        expect(result).to include(invoices(:mary_february))
+      end
+
+      it "excludes records not with unpaid status" do
+        result = described_class.unpaid
+        expect(result).to_not include(invoices(:mary_january))
+      end
+    end
+  end
+
   describe "email!" do
     let!(:unpaid_invoice) { create(:invoice, :unpaid) }
 

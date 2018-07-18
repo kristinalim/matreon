@@ -3,6 +3,8 @@ class Invoice < ApplicationRecord
 
   default_scope { order(created_at: :desc) }
 
+  scope :unpaid, -> { where(status: 'unpaid') }
+
   before_create :create_lightning_charge_invoice
   before_update :update_lightning_charge_invoice
 
