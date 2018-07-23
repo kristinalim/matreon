@@ -51,6 +51,10 @@ class Invoice < ApplicationRecord
 
   private
 
+  def self.ransackable_scopes(auth_object = nil)
+    [:unpaid]
+  end
+
   def create_lightning_charge_invoice
     lightning_charge_invoice = LightningChargeInvoice.create(amount)
 

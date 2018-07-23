@@ -11,7 +11,15 @@ class InvoicesController < ApplicationController
       end
     end
 
-    @invoices = current_user.invoices
+    invoice_search = current_user.invoices.ransack(index_ransack_params)
+    @invoices = invoice_search.result
+
     render json: {invoices: @invoices}
+  end
+
+  private
+
+  def index_ransack_params
+    params.has_key?(:q) ? params.require(:q).permit(:unpaid) : {}
   end
 end
